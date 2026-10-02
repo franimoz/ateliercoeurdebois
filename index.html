@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Cœur de Bois – Sapins de Noël en bois faits main à Vétroz</title>
+<meta name="description" content="Sapins de Noël en bois fabriqués à la main à Vétroz (VS) par un menuisier retraité : sapin en lattes, sapins emboîtables, sapin à vitraux avec bougie LED. Pièces uniques, hauteur sur mesure.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="canonical" href="https://ateliercoeurdebois.netlify.app/">
+<meta property="og:title" content="Atelier Cœur de Bois – Sapins de Noël en bois faits main">
+<meta property="og:description" content="Créations artisanales en bois, fabriquées à Vétroz (VS).">
+<meta property="og:image" content="https://ateliercoeurdebois.netlify.app/img/sapin-latte.jpg">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --bg:#faf6ef; --ink:#2b2118; --muted:#6f6254; --wood:#a8672f; --wood-d:#7a4519;
+  --card:#fff; --line:#e6dccb; --accent:#b8892b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,"Times New Roman",serif;background:var(--bg);color:var(--ink);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(250,246,239,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.logo img{height:64px;width:auto;display:block}
+.logo{font-size:1.25rem;font-weight:bold;text-decoration:none;color:var(--wood-d)}
+nav a{margin-left:20px;text-decoration:none;font-family:system-ui,sans-serif;font-size:.95rem;color:var(--muted)}
+nav a:hover{color:var(--wood)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:56px 0}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;color:var(--wood-d)}
+.hero p{margin:18px 0 26px;font-size:1.15rem;color:var(--muted)}
+.hero img{border-radius:14px;box-shadow:0 12px 36px rgba(60,35,10,.22);width:100%;height:auto;aspect-ratio:4/5;max-height:620px;object-fit:cover;object-position:center 55%}
+.btn{display:inline-block;background:var(--wood);color:#fff;padding:13px 26px;border-radius:999px;text-decoration:none;font-family:system-ui,sans-serif;font-weight:600;border:0;cursor:pointer;font-size:1rem}
+.btn:hover{background:var(--wood-d)}
+section{padding:56px 0}
+h2{font-size:2rem;color:var(--wood-d);margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{aspect-ratio:4/5;object-fit:cover;width:100%;height:auto}
+.card .body{padding:20px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:1.3rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.98rem;margin-bottom:10px}
+.price{font-family:system-ui,sans-serif;font-size:1.5rem;font-weight:700;color:var(--wood-d);margin-top:auto}
+.price small{font-size:.85rem;font-weight:400;color:var(--muted)}
+.tag{display:inline-block;font-family:system-ui,sans-serif;font-size:.78rem;background:#f3e7d3;color:var(--wood-d);border-radius:999px;padding:3px 11px;margin:0 6px 8px 0}
+.card .btn{margin-top:14px;text-align:center;padding:10px 20px;font-size:.95rem}
+.cat{font-size:1.35rem;color:var(--wood-d);margin:34px 0 14px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.grid{grid-template-columns:1fr;max-width:820px}
+@media(min-width:760px){.grid .card{flex-direction:row}.grid .card>img{width:42%;aspect-ratio:auto;height:auto;min-height:100%}.grid .card .body{padding:26px}}
+.sizes{list-style:none;margin-top:8px}
+.sizes li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-family:system-ui,sans-serif}
+.sizes li span{flex:1;font-size:1.05rem}
+.sizes li strong{font-size:1.25rem;color:var(--wood-d)}
+.sizes a{background:var(--wood);color:#fff;text-decoration:none;padding:8px 16px;border-radius:999px;font-size:.9rem;font-weight:600}
+.sizes a:hover{background:var(--wood-d)}
+.about{background:#f1e8d8}
+.about .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about ul{list-style:none;margin-top:14px}
+.about li{padding:6px 0 6px 28px;position:relative}
+.about li::before{content:"★";position:absolute;left:0;color:var(--accent)}
+form{display:grid;gap:14px;max-width:560px}
+label{font-family:system-ui,sans-serif;font-size:.9rem;color:var(--muted);display:grid;gap:5px}
+input,select,textarea{font:inherit;font-family:system-ui,sans-serif;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
+textarea{min-height:120px;resize:vertical}
+.hp{display:none}
+.cond{max-width:560px;border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:6px}
+.cond summary{cursor:pointer;padding:12px 16px;font-family:system-ui,sans-serif;font-weight:600;color:var(--wood-d)}
+.cond ol{padding:0 18px 14px 36px;color:var(--muted);font-size:.95rem}
+.cond li{margin-top:8px}
+.check{display:flex!important;grid-template-columns:none;gap:10px;align-items:flex-start;font-size:.95rem!important;color:var(--ink)!important}
+.check input{width:auto;margin-top:5px;flex:none}
+.qte{border:1px solid var(--line);border-radius:10px;background:#fff;padding:6px 14px 12px;font-family:system-ui,sans-serif}
+.qte legend{padding:0 6px;font-size:.9rem;color:var(--muted)}
+.qrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.qn{flex:1;font-size:.95rem}
+.qp{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.qrow input{width:72px;text-align:center}
+.qtot{display:flex;justify-content:space-between;padding-top:12px;font-size:.95rem}
+.qtot strong{color:var(--wood-d);font-size:1.15rem;white-space:nowrap;margin-left:12px}
+.qerr{color:#b00020;font-size:.9rem;margin-top:8px}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-family:system-ui,sans-serif;font-size:.9rem}
+@media(max-width:760px){
+  .logo img{height:46px}
+  nav a{margin-left:10px;font-size:.82rem}
+  .hero,.about .cols{grid-template-columns:1fr}
+  .hero{padding-top:32px}
+  nav a{margin-left:12px;font-size:.88rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Atelier Cœur de Bois – accueil"><img src="img/logo.svg" alt="Atelier Cœur de Bois – Une histoire de bois" height="64"></a>
+    <nav><a href="#creations">Créations</a><a href="#atelier">L'atelier</a><a href="#contact">Commander</a></nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div>
+    <h1>Des sapins de Noël en bois, faits main à Vétroz</h1>
+    <p>Fabriqués un par un dans l'atelier d'un menuisier passionné. Des décorations durables, qui reviennent chaque année et que l'on garde en souvenir.</p>
+    <a class="btn" href="#creations">Découvrir les créations</a>
+  </div>
+  <img src="img/sapin-latte.jpg" alt="Deux sapins de Noël en bois clair surmontés d'une étoile, l'un en spirale, l'un en lattes étagées">
+</div>
+
+<section id="creations">
+  <div class="wrap">
+    <h2>Nos créations</h2>
+    <p class="sub">Chaque pièce est fabriquée à la main. Les hauteurs peuvent être adaptées sur demande, le prix est alors adapté.</p>
+
+    <h3 class="cat">Sapin en lattes</h3>
+    <div class="grid">
+      <article class="card">
+        <img src="img/sapin-latte.jpg" alt="Sapin en lattes de bois clair avec étoile" loading="lazy">
+        <div class="body">
+          <div><span class="tag">Fait main</span><span class="tag">Hauteur sur mesure</span></div>
+          <h3>Le sapin en lattes</h3>
+          <p>Un sapin sculptural en lattes de bois naturel, couronné d'une étoile en bois. Pose au sol, il fait de l'effet dans un salon, une entrée ou une vitrine.</p>
+          <div class="price">250 CHF <small>hauteur 152 cm · diamètre 78 cm</small></div>
+          <p style="margin:6px 0 0">Autre hauteur possible : le prix est adapté.</p>
+          <a class="btn" href="#contact" data-idx="0">Réserver</a>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="cat">Les 3 sapins emboîtables</h3>
+    <div class="grid">
+      <article class="card">
+        <img src="img/trois-sapins.jpg" alt="Trois sapins en bois brûlé de tailles différentes, emboîtés les uns dans les autres" loading="lazy">
+        <div class="body">
+          <div><span class="tag">Lot de 3</span><span class="tag">Hauteur sur mesure</span></div>
+          <h3>Les trois sapins</h3>
+          <p>Trois sapins de tailles différentes qui s'emboîtent les uns dans les autres. Bois à la finition brûlée, pour une touche rustique et chaleureuse, à l'intérieur comme à l'extérieur.</p>
+          <div class="price">80 CHF <small>les trois sapins</small></div>
+          <p style="margin:6px 0 0">Hauteurs adaptables sur demande.</p>
+          <a class="btn" href="#contact" data-idx="1">Réserver</a>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="cat">Sapin unique, en 3 tailles</h3>
+    <div class="grid">
+      <article class="card">
+        <img src="img/trois-sapins.jpg" alt="Sapins en bois brûlé en trois tailles : petit, moyen et grand" loading="lazy">
+        <div class="body">
+          <div><span class="tag">À l'unité</span><span class="tag">3 tailles</span></div>
+          <h3>Le sapin emboîtable à l'unité</h3>
+          <p>Le même sapin en bois brûlé, vendu seul. Choisissez la taille qui convient à votre intérieur.</p>
+          <ul class="sizes">
+            <li><span>Petit</span><strong>20 CHF</strong><a href="#contact" data-idx="2">Réserver</a></li>
+            <li><span>Moyen</span><strong>25 CHF</strong><a href="#contact" data-idx="3">Réserver</a></li>
+            <li><span>Grand</span><strong>35 CHF</strong><a href="#contact" data-idx="4">Réserver</a></li>
+          </ul>
+          <p style="margin:10px 0 0">Autre hauteur possible sur demande.</p>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="cat">Sapin aux vitraux</h3>
+    <div class="grid">
+      <article class="card">
+        <img src="img/sapin-vitrail.jpg" alt="Sapins en bois décorés de boules en vitrail colorées, posés sur un socle" loading="lazy">
+        <div class="body">
+          <div><span class="tag">1 sapin par pièce</span><span class="tag">Vitraux colorés</span><span class="tag">Bougie LED</span></div>
+          <h3>Le sapin aux vitraux</h3>
+          <p>Un sapin en bois décoré de pastilles en vitrail rouges, bleues, vertes et jaunes. Une bougie LED placée derrière le sapin fait ressortir les couleurs, pour une lumière douce le soir. Prix par sapin, bougie LED incluse, piles non fournies.</p>
+          <p style="margin:0">Choisissez l'essence du bois :</p>
+          <ul class="sizes">
+            <li><span>Sapin</span><strong>40 CHF</strong><a href="#contact" data-idx="5">Réserver</a></li>
+            <li><span>Chêne</span><strong>45 CHF</strong><a href="#contact" data-idx="6">Réserver</a></li>
+            <li><span>Acajou</span><strong>45 CHF</strong><a href="#contact" data-idx="7">Réserver</a></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="atelier" class="about">
+  <div class="wrap cols">
+    <div>
+      <h2>L'atelier</h2>
+      <p>L'Atelier Cœur de Bois, c'est celui d'un menuisier retraité et bricoleur, installé à Vétroz, en Valais. Chaque sapin est dessiné, découpé, assemblé et poncé à la main, avec le souci du détail du métier.</p>
+      <ul>
+        <li>Fabrication artisanale locale, en Valais</li>
+        <li>Bois naturel, sans plastique</li>
+        <li>Hauteurs et dimensions adaptables</li>
+        <li>Pièces durables, à ressortir chaque année</li>
+      </ul>
+    </div>
+    <img src="img/trois-sapins.jpg" alt="Sapins en bois fabriqués à la main" style="border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%;height:auto" loading="lazy">
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Réserver ou demander un devis</h2>
+    <p class="sub">Dites-nous quel sapin vous intéresse et quelle hauteur vous souhaitez. Nous vous répondons rapidement.</p>
+    <form name="commande" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="commande">
+      <p class="hp"><label>Ne pas remplir : <input name="bot-field"></label></p>
+      <label>Nom<input type="text" name="nom" required></label>
+      <label>E-mail<input type="email" name="email" required></label>
+      <label>Téléphone (facultatif)<input type="tel" name="telephone"></label>
+      <fieldset class="qte">
+        <legend>Nombre de pièces à commander, par article</legend>
+          <div class="qrow"><span class="qn">Sapin en lattes (152 cm)</span><span class="qp">250 CHF</span><input type="number" name="qte_1" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="250" data-name="Sapin en lattes (152 cm)" aria-label="Quantité : Sapin en lattes (152 cm)"></div>
+          <div class="qrow"><span class="qn">Les 3 sapins emboîtables (lot de 3)</span><span class="qp">80 CHF</span><input type="number" name="qte_2" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="80" data-name="Les 3 sapins emboîtables (lot de 3)" aria-label="Quantité : Les 3 sapins emboîtables (lot de 3)"></div>
+          <div class="qrow"><span class="qn">Sapin emboîtable à l'unité – petit</span><span class="qp">20 CHF</span><input type="number" name="qte_3" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="20" data-name="Sapin emboîtable à l'unité – petit" aria-label="Quantité : Sapin emboîtable à l'unité – petit"></div>
+          <div class="qrow"><span class="qn">Sapin emboîtable à l'unité – moyen</span><span class="qp">25 CHF</span><input type="number" name="qte_4" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="25" data-name="Sapin emboîtable à l'unité – moyen" aria-label="Quantité : Sapin emboîtable à l'unité – moyen"></div>
+          <div class="qrow"><span class="qn">Sapin emboîtable à l'unité – grand</span><span class="qp">35 CHF</span><input type="number" name="qte_5" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="35" data-name="Sapin emboîtable à l'unité – grand" aria-label="Quantité : Sapin emboîtable à l'unité – grand"></div>
+          <div class="qrow"><span class="qn">Sapin aux vitraux – sapin</span><span class="qp">40 CHF</span><input type="number" name="qte_6" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="40" data-name="Sapin aux vitraux – sapin" aria-label="Quantité : Sapin aux vitraux – sapin"></div>
+          <div class="qrow"><span class="qn">Sapin aux vitraux – chêne</span><span class="qp">45 CHF</span><input type="number" name="qte_7" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="45" data-name="Sapin aux vitraux – chêne" aria-label="Quantité : Sapin aux vitraux – chêne"></div>
+          <div class="qrow"><span class="qn">Sapin aux vitraux – acajou</span><span class="qp">45 CHF</span><input type="number" name="qte_8" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="45" data-name="Sapin aux vitraux – acajou" aria-label="Quantité : Sapin aux vitraux – acajou"></div>
+        <div class="qtot"><span>Total estimé (sans emballage ni livraison)</span><strong id="total">0 CHF</strong></div>
+        <p class="qerr" id="qerr" hidden>Indiquez au moins une pièce.</p>
+        <input type="hidden" name="recapitulatif" id="recap">
+      </fieldset>
+      <label>Hauteur souhaitée (facultatif)<input type="text" name="hauteur" placeholder="ex. 1,8 m"></label>
+      <label>Message<textarea name="message"></textarea></label>
+      <details class="cond" id="conditions">
+        <summary>Conditions de réservation</summary>
+        <ol>
+          <li><strong>Réservation.</strong> Ce formulaire est une demande de réservation, sans paiement en ligne. La réservation est confirmée après réponse de l'atelier.</li>
+          <li><strong>Pièces artisanales.</strong> Chaque création est faite à la main : de légères variations de teinte, de veinage ou de dimensions par rapport aux photos sont normales.</li>
+          <li><strong>Sur mesure.</strong> Pour une hauteur différente, le prix est adapté. Il vous est communiqué avant la fabrication et doit être accepté par vous.</li>
+          <li><strong>Prix et paiement.</strong> Les prix sont indiqués en francs suisses (CHF). Le paiement se fait par <strong>TWINT avant la livraison</strong> ou la remise de l'article.</li>
+          <li><strong>Retrait et livraison.</strong> Le retrait se fait à l'atelier, à Vétroz. Les <strong>frais d'emballage et de livraison sont en sus</strong> et vous sont communiqués avant l'envoi.</li>
+          <li><strong>Annulation.</strong> Vous pouvez annuler gratuitement avant le début de la fabrication. Une pièce sur mesure déjà fabriquée reste due.</li>
+          <li><strong>Lumière LED.</strong> La bougie LED du sapin aux vitraux est fournie, mais les <strong>piles ne sont pas fournies</strong>. Elle est destinée à un usage intérieur.</li>
+        </ol>
+      </details>
+      <label class="check"><input type="checkbox" name="conditions" value="accepté" required> <span>J'ai lu et j'accepte les <a href="#conditions" onclick="document.getElementById('conditions').open=true">conditions de réservation</a>.</span></label>
+      <button class="btn" type="submit">Envoyer ma réservation</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Atelier Cœur de Bois · Fabriqué à la main à Vétroz (VS), Suisse · Prix en CHF</div>
+</footer>
+
+<script>
+(function(){
+  var inputs=[].slice.call(document.querySelectorAll('.qte input[type=number]'));
+  var tot=document.getElementById('total'), recap=document.getElementById('recap'), err=document.getElementById('qerr');
+  function maj(){
+    var t=0, lignes=[];
+    inputs.forEach(function(i){
+      var q=parseInt(i.value,10)||0; if(q<0)q=0;
+      if(q>0){t+=q*(+i.dataset.price); lignes.push(q+' x '+i.dataset.name+' ('+i.dataset.price+' CHF)');}
+    });
+    tot.textContent=t+' CHF';
+    recap.value=lignes.join(' | ')+(lignes.length?' | Total estimé : '+t+' CHF':'');
+    return t;
+  }
+  inputs.forEach(function(i){i.addEventListener('input',function(){maj();err.hidden=true;});});
+  document.querySelectorAll('[data-idx]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var i=inputs[+a.dataset.idx]; if(i && !(parseInt(i.value,10)>0)){i.value=1;} maj(); err.hidden=true;
+    });
+  });
+  document.querySelector('form[name=commande]').addEventListener('submit',function(e){
+    if(maj()<=0){e.preventDefault();err.hidden=false;document.querySelector('.qte').scrollIntoView({behavior:'smooth',block:'center'});}
+  });
+})();
+</script>
+</body>
+</html>
