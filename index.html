@@ -82,6 +82,20 @@ textarea{min-height:120px;resize:vertical}
 .qtot{display:flex;justify-content:space-between;padding-top:12px;font-size:.95rem}
 .qtot strong{color:var(--wood-d);font-size:1.15rem;white-space:nowrap;margin-left:12px}
 .qerr{color:#b00020;font-size:.9rem;margin-top:8px}
+.gal{position:relative;background:#eee4d3;overflow:hidden}
+.gal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%}
+.gal-track::-webkit-scrollbar{display:none}
+.gal figure{flex:0 0 100%;scroll-snap-align:center;position:relative;margin:0}
+.gal figure img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 34px;background:linear-gradient(transparent,rgba(43,33,24,.72));color:#fff;font-family:system-ui,sans-serif;font-size:.85rem}
+.gal-badge{position:absolute;top:12px;left:12px;z-index:2;background:var(--wood);color:#fff;font-family:system-ui,sans-serif;font-size:.8rem;font-weight:700;padding:5px 12px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.gal-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.88);color:var(--wood-d);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.gal-btn:hover{background:#fff}
+.gal-prev{left:10px}.gal-next{right:10px}
+.gal-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:7px}
+.gal-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55)}
+.gal-dots i.on{background:#fff}
+@media(min-width:760px){.grid .card>.gal{width:42%;aspect-ratio:4/5;flex:none}.grid .card>.gal .gal-track{position:absolute;inset:0}.grid .card>.gal figure{height:100%}.grid .card>.gal figure img{aspect-ratio:auto;height:100%}}
 footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-family:system-ui,sans-serif;font-size:.9rem}
 @media(max-width:760px){
   .logo img{height:46px}
@@ -118,7 +132,17 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
     <h3 class="cat">Sapin en lattes</h3>
     <div class="grid">
       <article class="card">
-        <img src="img/sapin-latte.jpg" alt="Sapin en lattes de bois clair avec étoile" loading="lazy">
+        <div class="gal" role="region" aria-roledescription="carrousel" aria-label="Photos du sapin en lattes">
+          <div class="gal-track" id="galLattes">
+            <figure><img src="img/sapin-latte.jpg" alt="Deux sapins en lattes de bois clair avec étoile : un en spirale, un étagé"><figcaption>Formes possibles : spirale et étagé</figcaption></figure>
+            <figure><img src="img/sapin-latte-vue1.jpg" alt="Sapin en lattes, vue de côté" loading="lazy"></figure>
+            <figure><img src="img/sapin-latte-vue2.jpg" alt="Sapin en lattes, vue de trois quarts" loading="lazy"></figure>
+            <figure><span class="gal-badge">Version pliée</span><img src="img/sapin-latte-plie.jpg" alt="Sapin en lattes plié à plat, en forme de triangle" loading="lazy"><figcaption>Plié à plat : pratique pour le ranger</figcaption></figure>
+          </div>
+          <button type="button" class="gal-btn gal-prev" aria-label="Photo précédente">‹</button>
+          <button type="button" class="gal-btn gal-next" aria-label="Photo suivante">›</button>
+          <div class="gal-dots" aria-hidden="true"></div>
+        </div>
         <div class="body">
           <div><span class="tag">Fait main</span><span class="tag">Hauteur sur mesure</span></div>
           <h3>Le sapin en lattes</h3>
@@ -271,6 +295,18 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   document.querySelector('form[name=commande]').addEventListener('submit',function(e){
     if(maj()<=0){e.preventDefault();err.hidden=false;document.querySelector('.qte').scrollIntoView({behavior:'smooth',block:'center'});}
   });
+})();
+(function(){
+  var g=document.getElementById('galLattes'); if(!g) return;
+  var n=g.children.length, dots=g.parentNode.querySelector('.gal-dots');
+  for(var i=0;i<n;i++){dots.appendChild(document.createElement('i'));}
+  function idx(){return Math.round(g.scrollLeft/g.clientWidth);}
+  function maj(){var k=idx();[].forEach.call(dots.children,function(d,j){d.className=j===k?'on':'';});}
+  g.addEventListener('scroll',maj);
+  function go(d){var k=Math.max(0,Math.min(n-1,idx()+d));g.scrollTo({left:k*g.clientWidth,behavior:'smooth'});}
+  g.parentNode.querySelector('.gal-prev').addEventListener('click',function(){go(-1);});
+  g.parentNode.querySelector('.gal-next').addEventListener('click',function(){go(1);});
+  maj();
 })();
 </script>
 </body>
