@@ -7,10 +7,10 @@
 <meta name="description" content="Sapins de Noël en bois fabriqués à la main à Vétroz (VS) par un menuisier retraité : sapin en lattes, sapins emboîtables, sapin à vitraux avec bougie LED. Pièces uniques, hauteur sur mesure.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="img/favicon.png">
-<link rel="canonical" href="https://ateliercoeurdebois.netlify.app/">
+<link rel="canonical" href="https://ateliercoeurdubois.ch/">
 <meta property="og:title" content="Atelier Cœur de Bois – Sapins de Noël en bois faits main">
 <meta property="og:description" content="Créations artisanales en bois, fabriquées à Vétroz (VS).">
-<meta property="og:image" content="https://ateliercoeurdebois.netlify.app/img/sapin-latte.jpg">
+<meta property="og:image" content="https://ateliercoeurdubois.ch/img/sapin-latte.jpg">
 <meta property="og:type" content="website">
 <style>
 :root{
@@ -227,9 +227,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   <div class="wrap">
     <h2>Réserver ou demander un devis</h2>
     <p class="sub">Dites-nous quel sapin vous intéresse et quelle hauteur vous souhaitez. Nous vous répondons rapidement.</p>
-    <form name="commande" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="commande">
-      <p class="hp"><label>Ne pas remplir : <input name="bot-field"></label></p>
+    <form name="commande" id="formCommande" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLScREtn-kBJLDKqRugE5XagHKVm8JnrXIoMcZUvgYrePYwQlng/formResponse">
+      <p class="hp"><label>Ne pas remplir : <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
       <label>Nom<input type="text" name="nom" required></label>
       <label>E-mail<input type="email" name="email" required></label>
       <label>Téléphone (facultatif)<input type="tel" name="telephone"></label>
@@ -262,7 +261,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
         </ol>
       </details>
       <label class="check"><input type="checkbox" name="conditions" value="accepté" required> <span>J'ai lu et j'accepte les <a href="#conditions" onclick="document.getElementById('conditions').open=true">conditions de réservation</a>.</span></label>
-      <button class="btn" type="submit">Envoyer ma réservation</button>
+      <button class="btn" type="submit" id="btnEnvoi">Envoyer ma réservation</button>
+      <p class="qerr" id="ferr" hidden></p>
     </form>
   </div>
 </section>
@@ -292,8 +292,28 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
       var i=inputs[+a.dataset.idx]; if(i && !(parseInt(i.value,10)>0)){i.value=1;} maj(); err.hidden=true;
     });
   });
-  document.querySelector('form[name=commande]').addEventListener('submit',function(e){
-    if(maj()<=0){e.preventDefault();err.hidden=false;document.querySelector('.qte').scrollIntoView({behavior:'smooth',block:'center'});}
+  var form=document.getElementById('formCommande'), btn=document.getElementById('btnEnvoi'), ferr=document.getElementById('ferr');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(maj()<=0){err.hidden=false;document.querySelector('.qte').scrollIntoView({behavior:'smooth',block:'center'});return;}
+    ferr.hidden=true; btn.disabled=true; var txt=btn.textContent; btn.textContent='Envoi en cours…';
+    if(form.elements['_gotcha'] && form.elements['_gotcha'].value){window.location.href='merci.html';return;}
+    var f=function(n){return (form.elements[n]&&form.elements[n].value)||'';};
+    var d=new FormData();
+    d.append('emailAddress',f('email'));
+    d.append('entry.976012484',f('nom'));
+    d.append('entry.983501021',f('telephone'));
+    d.append('entry.2019157108',f('recapitulatif'));
+    d.append('entry.1715265378',document.getElementById('total').textContent);
+    d.append('entry.1230071645',f('hauteur'));
+    d.append('entry.750137131',f('message'));
+    d.append('entry.1699342698',"J'ai lu et j'accepte les conditions");
+    fetch(form.action,{method:'POST',mode:'no-cors',body:d})
+      .then(function(){ window.location.href='merci.html'; })
+      .catch(function(){
+        ferr.textContent="L'envoi n'a pas fonctionné. Réessayez dans un instant ou écrivez-nous directement.";
+        ferr.hidden=false; btn.disabled=false; btn.textContent=txt;
+      });
   });
 })();
 (function(){

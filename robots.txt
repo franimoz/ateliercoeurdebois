@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ateliercoeurdebois.netlify.app/sitemap.xml
+Sitemap: https://ateliercoeurdubois.ch/sitemap.xml
