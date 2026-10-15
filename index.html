@@ -240,7 +240,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   <div class="wrap">
     <h2>Réserver ou demander un devis</h2>
     <p class="sub">Dites-nous quel sapin vous intéresse et quelle hauteur vous souhaitez. Nous vous répondons rapidement.</p>
-    <form name="commande" id="formCommande" method="POST" action="https://formsubmit.co/ajax/dessimoz@lignocam.com">
+    <form name="commande" id="formCommande" method="POST" action="https://formsubmit.co/ajax/franimoz@gmail.com">
       <p class="hp"><label>Ne pas remplir : <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
       <label>Nom<input type="text" name="nom" required></label>
       <label>E-mail<input type="email" name="email" required></label>
@@ -314,7 +314,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
     var f=function(n){return (form.elements[n]&&form.elements[n].value)||'';};
     var data={
       "_subject":"Nouvelle réservation – Atelier Cœur de Bois",
-      "_template":"table","_captcha":"false","_replyto":f('email'),
+      "_template":"table","_captcha":"false","_cc":"dessimozjr@gmail.com","_replyto":f('email'),
       "Nom":f('nom'),"E-mail":f('email'),"Téléphone":f('telephone'),
       "Récapitulatif":f('recapitulatif'),
       "Total estimé":document.getElementById('total').textContent,
