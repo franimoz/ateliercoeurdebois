@@ -240,7 +240,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   <div class="wrap">
     <h2>Réserver ou demander un devis</h2>
     <p class="sub">Dites-nous quel sapin vous intéresse et quelle hauteur vous souhaitez. Nous vous répondons rapidement.</p>
-    <form name="commande" id="formCommande" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLScREtn-kBJLDKqRugE5XagHKVm8JnrXIoMcZUvgYrePYwQlng/formResponse">
+    <form name="commande" id="formCommande" method="POST" action="https://formsubmit.co/ajax/dessimoz@lignocam.com">
       <p class="hp"><label>Ne pas remplir : <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
       <label>Nom<input type="text" name="nom" required></label>
       <label>E-mail<input type="email" name="email" required></label>
@@ -312,21 +312,23 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
     ferr.hidden=true; btn.disabled=true; var txt=btn.textContent; btn.textContent='Envoi en cours…';
     if(form.elements['_gotcha'] && form.elements['_gotcha'].value){window.location.href='merci.html';return;}
     var f=function(n){return (form.elements[n]&&form.elements[n].value)||'';};
-    var d=new FormData();
-    d.append('emailAddress',f('email'));
-    d.append('entry.976012484',f('nom'));
-    d.append('entry.983501021',f('telephone'));
-    d.append('entry.2019157108',f('recapitulatif'));
-    d.append('entry.1715265378',document.getElementById('total').textContent);
-    d.append('entry.1230071645',f('hauteur'));
-    d.append('entry.750137131',f('message'));
-    d.append('entry.1699342698',"J'ai lu et j'accepte les conditions");
-    fetch(form.action,{method:'POST',mode:'no-cors',body:d})
-      .then(function(){ window.location.href='merci.html'; })
-      .catch(function(){
-        ferr.textContent="L'envoi n'a pas fonctionné. Réessayez dans un instant ou écrivez-nous directement.";
-        ferr.hidden=false; btn.disabled=false; btn.textContent=txt;
-      });
+    var data={
+      "_subject":"Nouvelle réservation – Atelier Cœur de Bois",
+      "_template":"table","_captcha":"false","_replyto":f('email'),
+      "Nom":f('nom'),"E-mail":f('email'),"Téléphone":f('telephone'),
+      "Récapitulatif":f('recapitulatif'),
+      "Total estimé":document.getElementById('total').textContent,
+      "Hauteur souhaitée":f('hauteur'),"Message":f('message'),
+      "Conditions":"J'ai lu et j'accepte les conditions"
+    };
+    var echec=function(){
+      ferr.textContent="L'envoi n'a pas fonctionné. Réessayez dans un instant ou écrivez-nous directement.";
+      ferr.hidden=false; btn.disabled=false; btn.textContent=txt;
+    };
+    fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json();})
+      .then(function(j){ if(j && (j.success===true||j.success==='true')){window.location.href='merci.html';} else {echec();} })
+      .catch(echec);
   });
 })();
 (function(){
