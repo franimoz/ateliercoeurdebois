@@ -217,6 +217,47 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
         </div>
       </article>
     </div>
+
+    <h3 class="cat">Bricolage de Noël à faire avec vos enfants</h3>
+    <p class="sub" style="margin-top:-4px">Des kits complets : le bois découpé, la peinture et la déco sont fournis. Il ne reste qu'à peindre, coller et s'amuser en famille.</p>
+    <div class="grid">
+      <article class="card">
+        <img src="img/kit-pere-noel.jpg" alt="Père Noël en bois peint en vert, avec une barbe blanche et des boutons colorés, posé sur un socle" loading="lazy">
+        <div class="body">
+          <div><span class="tag">Kit complet</span><span class="tag">Bois + peinture + déco</span><span class="tag">Pour les enfants</span></div>
+          <h3>Le kit Père Noël</h3>
+          <p>Un kit complet pour fabriquer son Père Noël en bois : la pièce de bois découpée à l'atelier, la peinture et la décoration (boutons, détails) pour le personnaliser. Un moment à partager, et un souvenir à garder.</p>
+          <div class="price">25 CHF <small>le kit, par Père Noël</small></div>
+          <a class="btn" href="#contact" data-idx="8">Réserver</a>
+        </div>
+      </article>
+      <article class="card">
+        <img src="img/kit-sapins.jpg" alt="Petits sapins en bois clair à assembler, de plusieurs hauteurs" loading="lazy">
+        <div class="body">
+          <div><span class="tag">Kit complet</span><span class="tag">Bois + peinture + déco</span><span class="tag">2 hauteurs</span></div>
+          <h3>Le kit sapin</h3>
+          <p>Un sapin en bois à monter et à décorer soi-même. Le kit contient le bois, la peinture et la déco. Choisissez la hauteur :</p>
+          <ul class="sizes">
+            <li><span>Sapin 14 cm</span><strong>20 CHF</strong><a href="#contact" data-idx="9">Réserver</a></li>
+            <li><span>Sapin 20 cm</span><strong>20 CHF</strong><a href="#contact" data-idx="10">Réserver</a></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="cat">Étoiles en bois</h3>
+    <div class="grid">
+      <article class="card">
+        <img src="img/etoile.jpg" alt="Étoile en bois de chêne à six branches, composée de losanges assemblés" loading="lazy">
+        <div class="body">
+          <div><span class="tag">Fait main</span><span class="tag">Bois de chêne</span></div>
+          <h3>L'étoile en bois</h3>
+          <p>Une étoile à six branches, composée de losanges de bois assemblés à la main. À poser, à suspendre ou à offrir, elle apporte une touche naturelle à votre décoration de Noël.</p>
+          <div class="price">Prix sur demande</div>
+          <a class="btn" href="#contact" data-idx="11">Réserver</a>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -256,6 +297,10 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
           <div class="qrow"><span class="qn">Sapin aux vitraux – sapin</span><span class="qp">40 CHF</span><input type="number" name="qte_6" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="40" data-name="Sapin aux vitraux – sapin" aria-label="Quantité : Sapin aux vitraux – sapin"></div>
           <div class="qrow"><span class="qn">Sapin aux vitraux – chêne</span><span class="qp">45 CHF</span><input type="number" name="qte_7" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="45" data-name="Sapin aux vitraux – chêne" aria-label="Quantité : Sapin aux vitraux – chêne"></div>
           <div class="qrow"><span class="qn">Sapin aux vitraux – acajou</span><span class="qp">45 CHF</span><input type="number" name="qte_8" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="45" data-name="Sapin aux vitraux – acajou" aria-label="Quantité : Sapin aux vitraux – acajou"></div>
+          <div class="qrow"><span class="qn">Kit Père Noël (bricolage enfants)</span><span class="qp">25 CHF</span><input type="number" name="qte_9" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="25" data-name="Kit Père Noël (bricolage)" aria-label="Quantité : Kit Père Noël (bricolage)"></div>
+          <div class="qrow"><span class="qn">Kit sapin 14 cm (bricolage enfants)</span><span class="qp">20 CHF</span><input type="number" name="qte_10" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="20" data-name="Kit sapin 14 cm (bricolage)" aria-label="Quantité : Kit sapin 14 cm (bricolage)"></div>
+          <div class="qrow"><span class="qn">Kit sapin 20 cm (bricolage enfants)</span><span class="qp">20 CHF</span><input type="number" name="qte_11" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="20" data-name="Kit sapin 20 cm (bricolage)" aria-label="Quantité : Kit sapin 20 cm (bricolage)"></div>
+          <div class="qrow"><span class="qn">Étoile en bois</span><span class="qp">prix sur demande</span><input type="number" name="qte_12" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="0" data-name="Étoile en bois" aria-label="Quantité : Étoile en bois"></div>
         <div class="qtot"><span>Total estimé (sans emballage ni livraison)</span><strong id="total">0 CHF</strong></div>
         <p class="qerr" id="qerr" hidden>Indiquez au moins une pièce.</p>
         <input type="hidden" name="recapitulatif" id="recap">
@@ -291,14 +336,14 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   var inputs=[].slice.call(document.querySelectorAll('.qte input[type=number]'));
   var tot=document.getElementById('total'), recap=document.getElementById('recap'), err=document.getElementById('qerr');
   function maj(){
-    var t=0, lignes=[];
+    var t=0, n=0, lignes=[];
     inputs.forEach(function(i){
       var q=parseInt(i.value,10)||0; if(q<0)q=0;
-      if(q>0){t+=q*(+i.dataset.price); lignes.push(q+' x '+i.dataset.name+' ('+i.dataset.price+' CHF)');}
+      if(q>0){n+=q; t+=q*(+i.dataset.price); lignes.push(q+' x '+i.dataset.name+(+i.dataset.price>0?' ('+i.dataset.price+' CHF)':' (prix sur demande)'));}
     });
     tot.textContent=t+' CHF';
-    recap.value=lignes.join(' | ')+(lignes.length?' | Total estimé : '+t+' CHF':'');
-    return t;
+    recap.value=lignes.join(' | ')+(lignes.length?' | Total estimé : '+t+' CHF (hors articles sur demande)':'');
+    return n;
   }
   inputs.forEach(function(i){i.addEventListener('input',function(){maj();err.hidden=true;});});
   document.querySelectorAll('[data-idx]').forEach(function(a){
