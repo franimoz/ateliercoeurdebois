@@ -387,7 +387,7 @@ footer ul{list-style:none;display:grid;gap:8px}
     <div id="avis-vide" class="review-empty">
       <h3 style="color:var(--bark)">Les premiers avis arrivent bientôt</h3>
       <p>La boutique vient d'ouvrir. Vous avez reçu l'une de nos créations ? Racontez-nous votre expérience, nous publierons votre témoignage avec votre accord.</p>
-      <a class="btn btn-primary btn-sm" href="mailto:franimoz@gmail.com?subject=Mon%20avis%20sur%20l%27Atelier%20C%C5%93ur%20de%20Bois">Donner mon avis</a>
+      <a class="btn btn-primary btn-sm" href="mailto:info@ateliercoeurdebois.ch?subject=Mon%20avis%20sur%20l%27Atelier%20C%C5%93ur%20de%20Bois">Donner mon avis</a>
     </div>
   </div>
 </section>
@@ -418,7 +418,7 @@ footer ul{list-style:none;display:grid;gap:8px}
       <p>Dites-nous quel produit vous intéresse, la hauteur souhaitée si besoin, et nous vous répondons rapidement avec un devis.</p>
       <ul>
         <li><b>Atelier</b><span>Vétroz (VS), Suisse</span></li>
-        <li><b>E-mail</b><a href="mailto:franimoz@gmail.com">franimoz@gmail.com</a></li>
+        <li><b>E-mail</b><a href="mailto:info@ateliercoeurdebois.ch">info@ateliercoeurdebois.ch</a></li>
         <li><b>Retrait</b><span>À l'atelier, ou livraison sur demande</span></li>
       </ul>
     </div>
@@ -461,7 +461,7 @@ footer ul{list-style:none;display:grid;gap:8px}
         <h4>Coordonnées</h4>
         <ul>
           <li>Vétroz (VS), Suisse</li>
-          <li><a href="mailto:franimoz@gmail.com">franimoz@gmail.com</a></li>
+          <li><a href="mailto:info@ateliercoeurdebois.ch">info@ateliercoeurdebois.ch</a></li>
         </ul>
       </div>
       <div id="social-bloc" hidden>
@@ -541,9 +541,7 @@ var SOCIAL={facebook:"", whatsapp:""};
       "Produit désiré":val('f-produit'), "Message":val('f-msg')
     };
     function echec(){
-      var corps="Bonjour,\n\nJe souhaite un devis pour : "+data["Produit désiré"]+"\n\n"+data["Message"]+"\n\nNom : "+data["Nom"]+"\nTéléphone : "+data["Téléphone"]+"\nE-mail : "+data["E-mail"];
-      var lien="mailto:franimoz@gmail.com?subject="+encodeURIComponent("Demande de devis – Atelier Cœur de Bois")+"&body="+encodeURIComponent(corps);
-      msg.innerHTML='L\'envoi automatique n\'a pas fonctionné. <a href="'+lien+'">Cliquez ici pour envoyer votre demande par e-mail</a> (le message est déjà rempli).';
+      msg.innerHTML="L'envoi n'a pas fonctionné. Merci de réessayer dans quelques minutes, ou d'écrire à <a href=\"mailto:info@ateliercoeurdebois.ch\">info@ateliercoeurdebois.ch</a>.";
       msg.style.display='block'; btn.disabled=false; btn.textContent=txt;
     }
     fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})

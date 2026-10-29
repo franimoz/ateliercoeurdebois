@@ -371,9 +371,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
       "Conditions":"J'ai lu et j'accepte les conditions"
     };
     var echec=function(){
-      var corps="Bonjour,\n\nJe souhaite réserver :\n"+data["Récapitulatif"]+"\nTotal estimé : "+data["Total estimé"]+(data["Hauteur souhaitée"]?"\nHauteur souhaitée : "+data["Hauteur souhaitée"]:"")+"\n\nNom : "+data["Nom"]+"\nTéléphone : "+data["Téléphone"]+"\nE-mail : "+data["E-mail"]+(data["Message"]?"\n\n"+data["Message"]:"")+"\n\nJ'ai lu et j'accepte les conditions de réservation.";
-      var lien="mailto:franimoz@gmail.com?subject="+encodeURIComponent("Réservation – Atelier Cœur de Bois")+"&body="+encodeURIComponent(corps);
-      ferr.innerHTML="L'envoi automatique n'a pas fonctionné. <a href=\""+lien+"\">Cliquez ici pour envoyer votre réservation par e-mail</a> (le message est déjà rempli), ou écrivez-nous à franimoz@gmail.com.";
+      ferr.innerHTML="L'envoi n'a pas fonctionné. Merci de réessayer dans quelques minutes, ou d'écrire à <a href=\"mailto:info@ateliercoeurdebois.ch\">info@ateliercoeurdebois.ch</a>.";
       ferr.hidden=false; btn.disabled=false; btn.textContent=txt;
     };
     fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
