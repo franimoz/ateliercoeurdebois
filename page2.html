@@ -197,6 +197,52 @@ footer ul{list-style:none;display:grid;gap:8px}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+
+/* Galerie (carrousel) dans une carte produit */
+.pimg.gal{position:relative}
+.gal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-track figure{flex:0 0 100%;scroll-snap-align:center;position:relative;margin:0;height:100%}
+.gal-track figure img{width:100%;height:100%;object-fit:cover}
+.gal-track figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 28px;background:linear-gradient(0deg,rgba(43,33,24,.7),transparent);color:#fff;font-family:var(--sans);font-size:.85rem}
+.gal-badge{position:absolute;top:12px;left:12px;z-index:2;background:var(--ring);color:#fff;font-family:var(--sans);font-size:.8rem;font-weight:700;padding:5px 12px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.gal-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:var(--bark);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.gal-btn:hover{background:#fff}
+.gal-prev{left:10px}.gal-next{right:10px}
+.gal-dots{position:absolute;z-index:2;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:7px}
+.gal-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55)}
+.gal-dots i.on{background:#fff}
+.pcard:hover .gal-track img{transform:none}
+/* Détails produit */
+.ptags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{display:inline-block;font-family:var(--sans);font-size:.74rem;background:#f3e7d3;color:var(--bark);border-radius:999px;padding:3px 11px}
+.pbody p.sm{margin:0 0 14px;font-size:.88rem}
+.sizes{list-style:none;margin:2px 0 14px}
+.sizes li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-family:var(--sans)}
+.sizes li span{flex:1;font-size:.98rem}
+.sizes li strong{font-size:1.1rem;color:var(--heart);white-space:nowrap}
+.sizes a{background:var(--ring);color:#fff;text-decoration:none;padding:7px 14px;border-radius:999px;font-size:.85rem;font-weight:700;transition:background .2s}
+.sizes a:hover{background:var(--heart-l)}
+/* Formulaire de réservation complet */
+form.devis fieldset.qte{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:8px 16px 14px;font-family:var(--sans)}
+form.devis .qte legend{padding:0 8px;font-size:.9rem;color:var(--muted);font-weight:600}
+form.devis .qrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+form.devis .qn{flex:1;font-size:.95rem;display:block;font-weight:400;color:var(--ink)}
+form.devis .qp{color:var(--muted);font-size:.88rem;white-space:nowrap}
+form.devis .qrow input{width:74px;text-align:center;padding:9px 8px}
+form.devis .qrow.qh{background:#f6efe4;margin:0 -8px;padding:9px 8px;border-radius:8px}
+form.devis .qrow.qh .qn{font-size:.88rem;color:var(--muted)}
+form.devis .qrow.qh input{width:130px;text-align:left}
+form.devis .qtot{display:flex;justify-content:space-between;align-items:center;padding-top:14px;font-size:.95rem}
+form.devis .qtot strong{color:var(--heart);font-size:1.25rem;white-space:nowrap;margin-left:12px}
+form.devis .qerr{color:#b00020;font-size:.9rem;margin-top:8px}
+form.devis .cond{border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+form.devis .cond summary{cursor:pointer;padding:12px 16px;font-family:var(--sans);font-weight:700;color:var(--bark)}
+form.devis .cond ol{padding:0 18px 14px 36px;color:var(--muted);font-size:.92rem;font-family:var(--sans)}
+form.devis .cond li{margin-top:8px}
+form.devis label.check{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;color:var(--ink);font-weight:400}
+form.devis label.check input{width:auto;margin-top:5px;flex:none}
+form.devis label.check a{color:var(--heart);font-weight:700}
 </style>
 </head>
 <body>
@@ -283,58 +329,89 @@ footer ul{list-style:none;display:grid;gap:8px}
     </div>
     <div class="pgrid">
       <article class="pcard rv">
-        <div class="pimg"><img src="img/sapin-latte.jpg" alt="Sapins en lattes de bois clair avec étoile" loading="lazy"></div>
+        <div class="pimg gal" role="region" aria-roledescription="carrousel" aria-label="Photos du sapin en lattes">
+          <div class="gal-track" id="galLattes">
+            <figure><img src="img/sapin-latte.jpg" alt="Deux sapins en lattes de bois clair avec étoile : un en spirale, un étagé"><figcaption>Formes possibles : spirale et étagé</figcaption></figure>
+            <figure><img src="img/sapin-latte-vue1.jpg" alt="Sapin en lattes, vue de côté" loading="lazy"></figure>
+            <figure><img src="img/sapin-latte-vue2.jpg" alt="Sapin en lattes, vue de trois quarts" loading="lazy"></figure>
+            <figure><span class="gal-badge">Version pliée</span><img src="img/sapin-latte-plie.jpg" alt="Sapin en lattes plié à plat, en forme de triangle" loading="lazy"><figcaption>Plié à plat : pratique pour le ranger</figcaption></figure>
+          </div>
+          <button type="button" class="gal-btn gal-prev" aria-label="Photo précédente">‹</button>
+          <button type="button" class="gal-btn gal-next" aria-label="Photo suivante">›</button>
+          <div class="gal-dots" aria-hidden="true"></div>
+        </div>
         <div class="pbody">
+          <div class="ptags"><span class="tag">Fait main</span><span class="tag">Hauteur sur mesure</span></div>
           <h3>Le sapin en lattes</h3>
-          <div class="pprice">250 CHF <small>152 cm · Ø 78 cm</small></div>
-          <p>Un sapin sculptural en lattes de bois naturel, couronné d'une étoile. Hauteur sur mesure possible.</p>
-          <a class="btn btn-primary btn-sm" href="#contact" data-p="Le sapin en lattes (250 CHF)">Commander</a>
+          <div class="pprice">250 CHF <small>hauteur 152 cm · diamètre 78 cm</small></div>
+          <p>Un sapin sculptural en lattes de bois naturel, couronné d'une étoile en bois. Pose au sol, il fait de l'effet dans un salon, une entrée ou une vitrine.</p>
+          <p class="sm">Autre hauteur possible : le prix est adapté.</p>
+          <a class="btn btn-primary btn-sm" href="#contact" data-idx="0">Réserver</a>
         </div>
       </article>
       <article class="pcard rv">
-        <div class="pimg"><img src="img/trois-sapins.jpg" alt="Trois sapins en bois brûlé emboîtés les uns dans les autres" loading="lazy"></div>
+        <div class="pimg"><img src="img/trois-sapins.jpg" alt="Trois sapins en bois brûlé de tailles différentes, emboîtés les uns dans les autres" loading="lazy"></div>
         <div class="pbody">
+          <div class="ptags"><span class="tag">Lot de 3</span><span class="tag">Hauteur sur mesure</span></div>
           <h3>Les 3 sapins emboîtables</h3>
-          <div class="pprice">80 CHF <small>le lot de 3</small></div>
-          <p>Trois sapins de tailles différentes qui s'emboîtent, en bois à la finition brûlée.</p>
-          <a class="btn btn-primary btn-sm" href="#contact" data-p="Les 3 sapins emboîtables (80 CHF)">Commander</a>
+          <div class="pprice">80 CHF <small>les trois sapins</small></div>
+          <p>Trois sapins de tailles différentes qui s'emboîtent les uns dans les autres. Bois à la finition brûlée, pour une touche rustique et chaleureuse, à l'intérieur comme à l'extérieur.</p>
+          <p class="sm">Hauteurs adaptables sur demande.</p>
+          <a class="btn btn-primary btn-sm" href="#contact" data-idx="1">Réserver</a>
         </div>
       </article>
       <article class="pcard rv">
-        <div class="pimg"><img src="img/trois-sapins.jpg" alt="Sapins emboîtables en bois brûlé en trois tailles" loading="lazy" style="object-position:center 70%"></div>
+        <div class="pimg"><img src="img/trois-sapins.jpg" alt="Sapins en bois brûlé en trois tailles : petit, moyen et grand" loading="lazy" style="object-position:center 70%"></div>
         <div class="pbody">
-          <h3>Sapin emboîtable à l'unité</h3>
-          <div class="pprice">dès 20 CHF <small>petit 20 · moyen 25 · grand 35</small></div>
-          <p>Le même sapin en bois brûlé, vendu seul, en trois tailles.</p>
-          <a class="btn btn-primary btn-sm" href="#contact" data-p="Sapin emboîtable à l'unité (dès 20 CHF)">Commander</a>
+          <div class="ptags"><span class="tag">À l'unité</span><span class="tag">3 tailles</span></div>
+          <h3>Le sapin emboîtable à l'unité</h3>
+          <p>Le même sapin en bois brûlé, vendu seul. Choisissez la taille qui convient à votre intérieur.</p>
+          <ul class="sizes">
+            <li><span>Petit</span><strong>20 CHF</strong><a href="#contact" data-idx="2">Réserver</a></li>
+            <li><span>Moyen</span><strong>25 CHF</strong><a href="#contact" data-idx="3">Réserver</a></li>
+            <li><span>Grand</span><strong>35 CHF</strong><a href="#contact" data-idx="4">Réserver</a></li>
+          </ul>
+          <p class="sm">Autre hauteur possible sur demande.</p>
         </div>
       </article>
       <article class="pcard rv">
-        <div class="pimg"><img src="img/sapin-vitrail.jpg" alt="Sapins en bois décorés de pastilles de vitrail colorées" loading="lazy"></div>
+        <div class="pimg"><img src="img/sapin-vitrail.jpg" alt="Sapins en bois décorés de boules en vitrail colorées, posés sur un socle" loading="lazy"></div>
         <div class="pbody">
+          <div class="ptags"><span class="tag">1 sapin par pièce</span><span class="tag">Vitraux colorés</span><span class="tag">Bougie LED</span></div>
           <h3>Le sapin aux vitraux</h3>
-          <div class="pprice">dès 40 CHF <small>sapin 40 · chêne 45 · acajou 45</small></div>
-          <p>Des pastilles de vitrail colorées et une bougie LED derrière : une lumière douce le soir. Piles non fournies.</p>
-          <a class="btn btn-primary btn-sm" href="#contact" data-p="Le sapin aux vitraux (dès 40 CHF)">Commander</a>
+          <p>Un sapin en bois décoré de pastilles en vitrail rouges, bleues, vertes et jaunes. Une bougie LED placée derrière le sapin fait ressortir les couleurs, pour une lumière douce le soir. Prix par sapin, bougie LED incluse, piles non fournies.</p>
+          <p class="sm" style="margin-bottom:0">Choisissez l'essence du bois :</p>
+          <ul class="sizes">
+            <li><span>Sapin</span><strong>40 CHF</strong><a href="#contact" data-idx="5">Réserver</a></li>
+            <li><span>Chêne</span><strong>45 CHF</strong><a href="#contact" data-idx="6">Réserver</a></li>
+            <li><span>Acajou</span><strong>45 CHF</strong><a href="#contact" data-idx="7">Réserver</a></li>
+          </ul>
         </div>
       </article>
       <article class="pcard rv">
         <div class="pimg"><img src="img/kit-pere-noel.jpg" alt="Père Noël en bois peint en vert avec des boutons colorés" loading="lazy"></div>
         <div class="pbody">
-          <h3>Kits de bricolage pour enfants</h3>
-          <div class="pprice">dès 20 CHF <small>Père Noël 25 · sapin 14 ou 20 cm : 20</small></div>
-          <p>Bois, peinture et déco fournis : il ne reste qu'à peindre et décorer en famille.</p>
-          <a class="btn btn-primary btn-sm" href="#contact" data-p="Kit de bricolage pour enfants (dès 20 CHF)">Commander</a>
+          <div class="ptags"><span class="tag">Kit complet</span><span class="tag">Bois + peinture + déco</span><span class="tag">Pour les enfants</span></div>
+          <h3>Bricolage de Noël à faire avec vos enfants</h3>
+          <p>Des kits complets : le bois découpé, la peinture et la déco sont fournis. Il ne reste qu'à peindre, coller et s'amuser en famille.</p>
+          <ul class="sizes">
+            <li><span>Kit Père Noël</span><strong>25 CHF</strong><a href="#contact" data-idx="8">Réserver</a></li>
+            <li><span>Kit sapin 14 cm</span><strong>20 CHF</strong><a href="#contact" data-idx="9">Réserver</a></li>
+            <li><span>Kit sapin 20 cm</span><strong>20 CHF</strong><a href="#contact" data-idx="10">Réserver</a></li>
+          </ul>
         </div>
       </article>
       <article class="pcard rv">
         <div class="pimg"><img src="img/sapin-boule.jpg" alt="Sapin en bois flammé aux étoiles ajourées, avec une boule rouge suspendue et une bougie sur le socle" loading="lazy"></div>
         <div class="pbody">
+          <div class="ptags"><span class="tag">Fait main</span><span class="tag">Bois flammé</span><span class="tag">Bougie</span></div>
           <h3>Le sapin boule</h3>
           <div class="pprice">Prix sur demande</div>
-          <p>Un sapin découpé en bois flammé, aux étoiles ajourées, avec une boule rouge suspendue et un socle pour bougie.</p>
-          <a class="btn btn-primary btn-sm" href="#contact" data-p="Le sapin boule (sur demande)">Commander</a>
+          <p>Un sapin découpé dans un bois à la finition flammée, aux étoiles ajourées et à la gravure délicate. Une boule rouge est suspendue sur le côté, et le socle accueille une bougie : une ambiance chaleureuse sur la table, un buffet ou un meuble d'entrée.</p>
+          <a class="btn btn-primary btn-sm" href="#contact" data-idx="11">Réserver</a>
         </div>
+      </article>
+    </div>
       </article>
     </div>
     <div class="rv" style="margin-top:46px;position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
@@ -425,37 +502,55 @@ footer ul{list-style:none;display:grid;gap:8px}
   <div class="wrap contact-grid">
     <div class="contact-info rv">
       <p class="eyebrow">Contact</p>
-      <h2>Parlons de votre projet</h2>
-      <p>Dites-nous quel produit vous intéresse, la hauteur souhaitée si besoin, et nous vous répondons rapidement avec un devis.</p>
+      <h2>Réserver ou demander un devis</h2>
+      <p>Indiquez le nombre de pièces par article : le total se calcule tout seul. Précisez la hauteur souhaitée pour le sapin en lattes si besoin. Nous vous répondons rapidement pour confirmer votre réservation.</p>
       <ul>
         <li><b>Atelier</b><span>Vétroz (VS), Suisse</span></li>
         <li><b>E-mail</b><a href="mailto:info@ateliercoeurdebois.ch">info@ateliercoeurdebois.ch</a></li>
         <li><b>Retrait</b><span>À l'atelier, ou livraison sur demande</span></li>
       </ul>
     </div>
-    <form class="devis rv" id="devis" novalidate>
-      <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
-      <label>Nom<input type="text" name="nom" id="f-nom" required autocomplete="name"></label>
-      <div class="row2">
-        <label>E-mail<input type="email" name="email" id="f-email" required autocomplete="email"></label>
-        <label>Téléphone (facultatif)<input type="tel" name="telephone" id="f-tel" autocomplete="tel"></label>
-      </div>
-      <label>Produit désiré
-        <select name="produit" id="f-produit" required>
-          <option value="">Choisissez un produit…</option>
-          <option>Le sapin en lattes (250 CHF)</option>
-          <option>Les 3 sapins emboîtables (80 CHF)</option>
-          <option>Sapin emboîtable à l'unité (dès 20 CHF)</option>
-          <option>Le sapin aux vitraux (dès 40 CHF)</option>
-          <option>Kit de bricolage pour enfants (dès 20 CHF)</option>
-          <option>Le sapin boule (sur demande)</option>
-          <option>Autre / plusieurs produits</option>
-        </select>
-      </label>
-      <label>Message<textarea name="message" id="f-msg" placeholder="Taille ou hauteur souhaitée, quantité, date, essence du bois…"></textarea></label>
-      <p class="fmsg" id="fmsg" role="alert"></p>
-      <button class="btn btn-primary" type="submit" id="fbtn">Demander un devis</button>
-      <p class="fnote">Vos données servent uniquement à traiter votre demande. <a href="confidentialite.html">En savoir plus</a>.</p>
+    <form class="devis rv" name="commande" id="formCommande" method="POST" action="https://api.web3forms.com/submit">
+      <p class="hp"><label>Ne pas remplir : <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
+      <label>Nom<input type="text" name="nom" required></label>
+      <label>E-mail<input type="email" name="email" required></label>
+      <label>Téléphone (facultatif)<input type="tel" name="telephone"></label>
+      <fieldset class="qte">
+        <legend>Nombre de pièces à commander, par article</legend>
+          <div class="qrow"><span class="qn">Sapin en lattes (152 cm)</span><span class="qp">250 CHF</span><input type="number" name="qte_1" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="250" data-name="Sapin en lattes (152 cm)" aria-label="Quantité : Sapin en lattes (152 cm)"></div>
+          <div class="qrow qh"><label class="qn" for="hauteur">Hauteur souhaitée pour le sapin en lattes (facultatif)</label><input type="text" id="hauteur" name="hauteur" placeholder="ex. 180 cm" autocomplete="off"></div>
+          <div class="qrow"><span class="qn">Les 3 sapins emboîtables (lot de 3)</span><span class="qp">80 CHF</span><input type="number" name="qte_2" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="80" data-name="Les 3 sapins emboîtables (lot de 3)" aria-label="Quantité : Les 3 sapins emboîtables (lot de 3)"></div>
+          <div class="qrow"><span class="qn">Sapin emboîtable à l'unité – petit</span><span class="qp">20 CHF</span><input type="number" name="qte_3" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="20" data-name="Sapin emboîtable à l'unité – petit" aria-label="Quantité : Sapin emboîtable à l'unité – petit"></div>
+          <div class="qrow"><span class="qn">Sapin emboîtable à l'unité – moyen</span><span class="qp">25 CHF</span><input type="number" name="qte_4" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="25" data-name="Sapin emboîtable à l'unité – moyen" aria-label="Quantité : Sapin emboîtable à l'unité – moyen"></div>
+          <div class="qrow"><span class="qn">Sapin emboîtable à l'unité – grand</span><span class="qp">35 CHF</span><input type="number" name="qte_5" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="35" data-name="Sapin emboîtable à l'unité – grand" aria-label="Quantité : Sapin emboîtable à l'unité – grand"></div>
+          <div class="qrow"><span class="qn">Sapin aux vitraux – sapin</span><span class="qp">40 CHF</span><input type="number" name="qte_6" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="40" data-name="Sapin aux vitraux – sapin" aria-label="Quantité : Sapin aux vitraux – sapin"></div>
+          <div class="qrow"><span class="qn">Sapin aux vitraux – chêne</span><span class="qp">45 CHF</span><input type="number" name="qte_7" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="45" data-name="Sapin aux vitraux – chêne" aria-label="Quantité : Sapin aux vitraux – chêne"></div>
+          <div class="qrow"><span class="qn">Sapin aux vitraux – acajou</span><span class="qp">45 CHF</span><input type="number" name="qte_8" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="45" data-name="Sapin aux vitraux – acajou" aria-label="Quantité : Sapin aux vitraux – acajou"></div>
+          <div class="qrow"><span class="qn">Kit Père Noël (bricolage enfants)</span><span class="qp">25 CHF</span><input type="number" name="qte_9" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="25" data-name="Kit Père Noël (bricolage)" aria-label="Quantité : Kit Père Noël (bricolage)"></div>
+          <div class="qrow"><span class="qn">Kit sapin 14 cm (bricolage enfants)</span><span class="qp">20 CHF</span><input type="number" name="qte_10" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="20" data-name="Kit sapin 14 cm (bricolage)" aria-label="Quantité : Kit sapin 14 cm (bricolage)"></div>
+          <div class="qrow"><span class="qn">Kit sapin 20 cm (bricolage enfants)</span><span class="qp">20 CHF</span><input type="number" name="qte_11" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="20" data-name="Kit sapin 20 cm (bricolage)" aria-label="Quantité : Kit sapin 20 cm (bricolage)"></div>
+          <div class="qrow"><span class="qn">Sapin boule</span><span class="qp">prix sur demande</span><input type="number" name="qte_12" min="0" max="99" value="0" step="1" inputmode="numeric" data-price="0" data-name="Sapin boule" aria-label="Quantité : Sapin boule"></div>
+        <div class="qtot"><span>Total estimé (sans emballage ni livraison)</span><strong id="total">0 CHF</strong></div>
+        <p class="qerr" id="qerr" hidden>Indiquez au moins une pièce.</p>
+        <input type="hidden" name="recapitulatif" id="recap">
+      </fieldset>
+      <label>Message<textarea name="message"></textarea></label>
+      <details class="cond" id="conditions">
+        <summary>Conditions de réservation</summary>
+        <ol>
+          <li><strong>Réservation.</strong> Ce formulaire est une demande de réservation, sans paiement en ligne. La réservation est confirmée après réponse de l'atelier.</li>
+          <li><strong>Pièces artisanales.</strong> Chaque création est faite à la main : de légères variations de teinte, de veinage ou de dimensions par rapport aux photos sont normales.</li>
+          <li><strong>Sur mesure.</strong> Pour une hauteur différente, le prix est adapté. Il vous est communiqué avant la fabrication et doit être accepté par vous.</li>
+          <li><strong>Prix et paiement.</strong> Les prix sont indiqués en francs suisses (CHF). Le paiement se fait par <strong>TWINT</strong>, avant la livraison ou la remise de l'article.</li>
+          <li><strong>Retrait et livraison.</strong> Le retrait se fait à l'atelier, à Vétroz. Les <strong>frais d'emballage et de livraison sont en sus</strong> et vous sont communiqués avant l'envoi.</li>
+          <li><strong>Annulation.</strong> Vous pouvez annuler gratuitement avant le début de la fabrication. Une pièce sur mesure déjà fabriquée reste due.</li>
+          <li><strong>Lumière LED.</strong> La bougie LED du sapin aux vitraux est fournie, mais les <strong>piles ne sont pas fournies</strong>. Elle est destinée à un usage intérieur.</li>
+        </ol>
+      </details>
+      <label class="check"><input type="checkbox" name="conditions" value="accepté" required> <span>J'ai lu et j'accepte les <a href="#conditions" onclick="document.getElementById('conditions').open=true">conditions de réservation</a>.</span></label>
+      <p style="font-family:system-ui,sans-serif;font-size:.82rem;color:var(--muted);margin:0">Vos données servent uniquement à traiter votre demande. <a href="confidentialite.html">En savoir plus</a>.</p>
+      <button class="btn btn-primary" type="submit" id="btnEnvoi">Envoyer ma réservation</button>
+      <p class="qerr" id="ferr" hidden></p>
     </form>
   </div>
 </section>
@@ -503,12 +598,6 @@ var SOCIAL={facebook:"", whatsapp:""};
   });
   menu.addEventListener('click',function(e){ if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');} });
 
-  // Produit présélectionné depuis les boutons "Commander"
-  var sel=document.getElementById('f-produit');
-  [].forEach.call(document.querySelectorAll('[data-p]'),function(a){
-    a.addEventListener('click',function(){ sel.value=a.getAttribute('data-p'); });
-  });
-
   // Avis
   var liste=document.getElementById('avis-liste'), vide=document.getElementById('avis-vide');
   function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
@@ -533,33 +622,66 @@ var SOCIAL={facebook:"", whatsapp:""};
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
     els.forEach(function(el){io.observe(el);});
   } else { els.forEach(function(el){el.classList.add('in');}); }
-
-  // Formulaire : demande de devis
-  var form=document.getElementById('devis'), btn=document.getElementById('fbtn'), msg=document.getElementById('fmsg');
-  function val(id){return (document.getElementById(id).value||'').trim();}
+})();
+(function(){
+  var inputs=[].slice.call(document.querySelectorAll('.qte input[type=number]'));
+  var tot=document.getElementById('total'), recap=document.getElementById('recap'), err=document.getElementById('qerr');
+  function maj(){
+    var t=0, n=0, lignes=[];
+    inputs.forEach(function(i){
+      var q=parseInt(i.value,10)||0; if(q<0)q=0;
+      if(q>0){n+=q; t+=q*(+i.dataset.price); lignes.push(q+' x '+i.dataset.name+(+i.dataset.price>0?' ('+i.dataset.price+' CHF)':' (prix sur demande)'));}
+    });
+    tot.textContent=t+' CHF';
+    recap.value=lignes.join(' | ')+(lignes.length?' | Total estimé : '+t+' CHF (hors articles sur demande)':'');
+    return n;
+  }
+  inputs.forEach(function(i){i.addEventListener('input',function(){maj();err.hidden=true;});});
+  document.querySelectorAll('[data-idx]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var i=inputs[+a.dataset.idx]; if(i && !(parseInt(i.value,10)>0)){i.value=1;} maj(); err.hidden=true;
+    });
+  });
+  var form=document.getElementById('formCommande'), btn=document.getElementById('btnEnvoi'), ferr=document.getElementById('ferr');
   form.addEventListener('submit',function(e){
-    e.preventDefault(); msg.style.display='none';
-    if(form.elements['botcheck'].checked){window.location.href='merci.html';return;}
-    if(!val('f-nom')||!/^\S+@\S+\.\S+$/.test(val('f-email'))||!val('f-produit')){
-      msg.textContent='Merci de renseigner votre nom, un e-mail valide et le produit désiré.'; msg.style.display='block'; return;
-    }
-    var txt=btn.textContent; btn.disabled=true; btn.textContent='Envoi en cours…';
+    e.preventDefault();
+    if(maj()<=0){err.hidden=false;document.querySelector('.qte').scrollIntoView({behavior:'smooth',block:'center'});return;}
+    ferr.hidden=true; btn.disabled=true; var txt=btn.textContent; btn.textContent='Envoi en cours…';
+    if(form.elements['_gotcha'] && form.elements['_gotcha'].value){window.location.href='merci.html';return;}
+    var f=function(n){return (form.elements[n]&&form.elements[n].value)||'';};
     var data={
-      access_key:"6eb974bc-eff3-4b44-9caa-b8c513fb6236",
-      subject:"Demande de devis – Atelier Cœur de Bois",
-      from_name:val('f-nom'), email:val('f-email'), replyto:val('f-email'),
-      "Nom":val('f-nom'), "E-mail":val('f-email'), "Téléphone":val('f-tel'),
-      "Produit désiré":val('f-produit'), "Message":val('f-msg')
+      "access_key":"6eb974bc-eff3-4b44-9caa-b8c513fb6236",
+      "subject":"Nouvelle réservation – Atelier Cœur de Bois",
+      "from_name":f('nom'),
+      "email":f('email'),
+      "replyto":f('email'),
+      "Nom":f('nom'),"E-mail":f('email'),"Téléphone":f('telephone'),
+      "Récapitulatif":f('recapitulatif'),
+      "Total estimé":document.getElementById('total').textContent,
+      "Hauteur souhaitée":f('hauteur'),"Message":f('message'),
+      "Conditions":"J'ai lu et j'accepte les conditions"
     };
-    function echec(){
-      msg.innerHTML="L'envoi n'a pas fonctionné. Merci de réessayer dans quelques minutes, ou d'écrire à <a href=\"mailto:info@ateliercoeurdebois.ch\">info@ateliercoeurdebois.ch</a>.";
-      msg.style.display='block'; btn.disabled=false; btn.textContent=txt;
-    }
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+    var echec=function(){
+      ferr.innerHTML="L'envoi n'a pas fonctionné. Merci de réessayer dans quelques minutes, ou d'écrire à <a href=\"mailto:info@ateliercoeurdebois.ch\">info@ateliercoeurdebois.ch</a>.";
+      ferr.hidden=false; btn.disabled=false; btn.textContent=txt;
+    };
+    fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json();})
-      .then(function(j){ if(j&&j.success===true){window.location.href='merci.html';} else {echec();} })
+      .then(function(j){ if(j && j.success===true){window.location.href='merci.html';} else {echec();} })
       .catch(echec);
   });
+})();
+(function(){
+  var g=document.getElementById('galLattes'); if(!g) return;
+  var n=g.children.length, dots=g.parentNode.querySelector('.gal-dots');
+  for(var i=0;i<n;i++){dots.appendChild(document.createElement('i'));}
+  function idx(){return Math.round(g.scrollLeft/g.clientWidth);}
+  function maj(){var k=idx();[].forEach.call(dots.children,function(d,j){d.className=j===k?'on':'';});}
+  g.addEventListener('scroll',maj);
+  function go(d){var k=Math.max(0,Math.min(n-1,idx()+d));g.scrollTo({left:k*g.clientWidth,behavior:'smooth'});}
+  g.parentNode.querySelector('.gal-prev').addEventListener('click',function(){go(-1);});
+  g.parentNode.querySelector('.gal-next').addEventListener('click',function(){go(1);});
+  maj();
 })();
 </script>
 <style>.switch-ver{position:fixed;left:16px;bottom:16px;z-index:9999;background:#3b2415;color:#fff;font:600 14px/1 system-ui,sans-serif;padding:12px 18px;border-radius:999px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.3);border:2px solid #e3b87a}.switch-ver:hover{background:#7a2e1d}</style>
