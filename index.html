@@ -106,7 +106,7 @@ nav a.l:hover::after{width:100%}
 /* À propos */
 .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
 .about-img{position:relative}
-.about-img img{border-radius:var(--radius);box-shadow:var(--shadow);aspect-ratio:4/5;object-fit:cover;width:100%}
+.about-img img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;height:auto}
 .about-img::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--sap);border-radius:var(--radius);z-index:-1}
 .about-text p{margin-top:16px;color:#4d3827}
 .about-text ul{list-style:none;margin-top:22px;display:grid;gap:10px;font-family:var(--sans)}
@@ -119,8 +119,9 @@ nav a.l:hover::after{width:100%}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.pimg{aspect-ratio:4/5;overflow:hidden;background:#efe6d6}
-.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pimg{overflow:hidden;background:#efe6d6}
+.pimg img{width:100%;height:auto;max-height:560px;object-fit:contain;transition:transform .5s}
+.pimg.gal{aspect-ratio:4/5}
 .pcard:hover .pimg img{transform:scale(1.05)}
 .pbody{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
 .pbody h3{font-size:1.25rem;color:var(--bark-d)}
@@ -217,7 +218,7 @@ footer ul{list-style:none;display:grid;gap:8px}
 .gal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%}
 .gal-track::-webkit-scrollbar{display:none}
 .gal-track figure{flex:0 0 100%;scroll-snap-align:center;position:relative;margin:0;height:100%}
-.gal-track figure img{width:100%;height:100%;object-fit:cover}
+.gal-track figure img{width:100%;height:100%;object-fit:contain;max-height:none}
 .gal-track figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 28px;background:linear-gradient(0deg,rgba(43,33,24,.7),transparent);color:#fff;font-family:var(--sans);font-size:.85rem}
 .gal-badge{position:absolute;top:12px;left:12px;z-index:2;background:var(--ring);color:#fff;font-family:var(--sans);font-size:.8rem;font-weight:700;padding:5px 12px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 .gal-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:var(--bark);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25)}
@@ -376,7 +377,7 @@ form.devis label.check a{color:var(--heart);font-weight:700}
         </div>
       </article>
       <article class="pcard rv">
-        <div class="pimg"><img src="img/trois-sapins.jpg" alt="Sapins en bois brûlé en trois tailles : petit, moyen et grand" loading="lazy" style="object-position:center 70%"></div>
+        <div class="pimg"><img src="img/trois-sapins.jpg" alt="Sapins en bois brûlé en trois tailles : petit, moyen et grand" loading="lazy"></div>
         <div class="pbody">
           <div class="ptags"><span class="tag">À l'unité</span><span class="tag">3 tailles</span></div>
           <h3>Le sapin emboîtable à l'unité</h3>
@@ -451,7 +452,7 @@ form.devis label.check a{color:var(--heart);font-weight:700}
       </article>
     </div>
     <div class="rv" style="margin-top:46px;position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
-      <img src="img/foret.jpg" alt="Une forêt de Pères Noël et de sapins en bois peints et décorés, posés sur un meuble" loading="lazy" style="width:100%;height:auto;aspect-ratio:2/1;object-fit:cover">
+      <img src="img/foret.jpg" alt="Une forêt de Pères Noël et de sapins en bois peints et décorés, posés sur un meuble" loading="lazy" style="width:100%;height:auto">
       <div style="position:absolute;left:0;right:0;bottom:0;padding:44px 28px 22px;background:linear-gradient(0deg,rgba(59,36,21,.88),transparent);color:#fff">
         <h3 style="font-size:clamp(1.2rem,2.4vw,1.7rem)">Une forêt de Pères Noël et de sapins</h3>
         <p style="font-family:var(--sans);font-size:.95rem;color:#ecdcc6;max-width:42em">Peints, décorés, personnalisés : voilà ce que donnent nos pièces de bois une fois habillées. Avec les kits, chacun crée les siens, en famille.</p>
